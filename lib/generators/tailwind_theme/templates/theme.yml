@@ -1,0 +1,6 @@
+_theme: "<%= @theme_name %>"
+component:
+  disabled?: "opacity-50"
+  variant:
+    solid: "bg-blue-500"
+    outline: "border border-blue-500"
