@@ -9,3 +9,6 @@
 
 # IDE
 /.idea
+
+# Gem files
+tailwind_theme-rails-*.gem
