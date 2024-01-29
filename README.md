@@ -8,7 +8,7 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "tailwind_merge-rails"
+gem "tailwind_theme-rails"
 ```
 
 And then execute:
@@ -18,7 +18,7 @@ $ bundle
 
 Or install it yourself as:
 ```bash
-$ gem install tailwind_merge-rails
+$ gem install tailwind_theme-rails
 ```
 
 ## Contributing

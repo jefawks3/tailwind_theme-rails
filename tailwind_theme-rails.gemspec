@@ -4,7 +4,7 @@ $LOAD_PATH.push File.expand_path('../lib', __FILE__)
 require "tailwind_theme/rails/version"
 
 Gem::Specification.new do |spec|
-  spec.name        = "tailwind_merge-rails"
+  spec.name        = "tailwind_theme-rails"
   spec.version     = TailwindTheme::Rails::VERSION
   spec.authors     = ["James Fawks"]
   spec.email       = ["hello@jfawks.com"]

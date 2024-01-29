@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# Specify your gem's dependencies in tailwind_merge-rails.gemspec.
+# Specify your gem's dependencies in tailwind_theme-rails.gemspec.
 gemspec
 
 rails_version = ENV["RAILS_VERSION"] || "7.1.0"

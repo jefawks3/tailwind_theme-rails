@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tailwind_merge-rails (0.1.0)
+    tailwind_theme-rails (0.1.0)
       activesupport (>= 6.0.0, < 8.0)
       railties (>= 6.0.0)
       tailwind_theme (~> 0.1)
@@ -227,7 +227,7 @@ DEPENDENCIES
   rails-controller-testing
   rdoc
   sqlite3
-  tailwind_merge-rails!
+  tailwind_theme-rails!
 
 BUNDLED WITH
    2.5.3
