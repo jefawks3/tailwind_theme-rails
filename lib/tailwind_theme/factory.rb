@@ -12,8 +12,7 @@ module TailwindTheme
   #     TailwindTheme::Factory.new.theme :admin
   #
   class Factory
-    def initialize(config_dir = nil)
-      @config_dir = config_dir || ::Rails.root.join("config").to_s
+    def initialize
       @themes = {}
     end
 
@@ -28,43 +27,44 @@ module TailwindTheme
     # @return [TailwindTheme::Theme, NilClass] returns the theme or nil if the theme cannot be found.
     def theme(name = nil)
       if name.nil? || name.to_s == "default"
-        default_theme
+        @themes[:default] ||= load_default_theme
       else
-        theme_by_name name
+        @themes[name.to_sym] = load_by_name name.to_sym
       end
     end
 
     private
 
-    def default_theme
-      return @themes[:default] if @themes[:default]
-
-      files = Dir[
-        File.expand_path("themes/default.{yml,yml.erb}"),
-        File.expand_path("theme.{yml,yml.erb}", @config_dir)
-      ]
-
-      load_theme :default, files
+    def load_default_theme
+      load_theme :default, %w[themes/default.{yml,yml.erb} theme.{yml,yml.erb}]
     end
 
-    def theme_by_name(name)
-      return @themes[name.to_sym] if @themes[name.to_sym]
+    def load_by_name(name)
+      load_theme name, %W[themes/#{name}.{yml,yml.erb}]
+    end
 
-      files = Dir[File.expand_path("themes/#{name}.{yml,yml.erb}", @config_dir)]
-      load_theme name, files
+    def find_theme(paths)
+      patterns = TailwindTheme.load_paths.each_with_object([]) do |dir, patterns|
+        paths.each do |path|
+          patterns << File.expand_path(path, dir)
+        end
+      end
+
+      Dir.glob(patterns, 0).first
     end
 
     def load_theme(name, files)
-      return if files.empty?
+      file = find_theme files
+      return unless file
 
-      theme = TailwindTheme.load_file files.first.to_s
+      theme = TailwindTheme.load_file file.to_s
       theme.instance_eval <<-RUBY
 def name
   "#{name}"
 end
       RUBY
 
-      @themes[name.to_sym] = theme
+      theme
     end
   end
 end

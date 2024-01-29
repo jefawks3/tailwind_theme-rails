@@ -15,4 +15,10 @@ class FactoryTest < ActiveSupport::TestCase
     assert_equal "admin", theme[:_theme]
     assert_equal "admin", theme.name
   end
+
+  test "load test-theme from alternative location" do
+    theme = TailwindTheme::Factory.new.theme "test-theme"
+    assert_equal "test-theme", theme[:_theme]
+    assert_equal "test-theme", theme.name
+  end
 end
