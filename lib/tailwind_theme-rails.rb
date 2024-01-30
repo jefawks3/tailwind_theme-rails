@@ -13,4 +13,6 @@ module TailwindTheme
   def self.load_paths
     @@load_paths ||= [::Rails.root.join("config")]
   end
+
+  ActiveSupport.run_load_hooks :tailwind_theme, self
 end
