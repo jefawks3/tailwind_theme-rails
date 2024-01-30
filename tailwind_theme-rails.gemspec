@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.required_ruby_version = ">= 2.7.0"
 
-  spec.add_dependency "tailwind_theme", "~> 0.1"
+  spec.add_dependency "tailwind_theme", "0.1.1"
   spec.add_runtime_dependency "railties", ">= 6.0.0"
   spec.add_runtime_dependency "activesupport", [">= 6.0.0", "< 8.0"]
 end
