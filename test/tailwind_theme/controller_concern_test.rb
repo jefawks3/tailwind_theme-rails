@@ -11,4 +11,8 @@ class ControllerConcernTest < ActiveSupport::TestCase
   test "inheritance" do
     assert "admin", AdminUsersController.new.theme.name
   end
+
+  test "load a different them" do
+    assert "admin", ApplicationController.new.theme(:admin).name
+  end
 end

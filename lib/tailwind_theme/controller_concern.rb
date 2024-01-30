@@ -8,7 +8,7 @@ module TailwindTheme
     extend ActiveSupport::Concern
 
     included do
-      class_attribute :_theme # :nodoc:
+      class_attribute :_theme, default: :default # :nodoc:
 
       # Add the helper method for the views
       helper_method :theme
@@ -23,13 +23,16 @@ module TailwindTheme
       #
       # See the [Factory](#Factory) class for more details
       def theme(name)
-        self._theme = name
+        self._theme = name.presence || :default
       end
     end
 
     # The specified TailwindTheme for the controller
-    def theme
-      theme_factory.theme self.class._theme
+    # @param [String, Symbol, NilClass] name the name of the theme to use. Defaults to the theme set by the `theme`
+    #   class method.
+    # @return [TailwindTheme::Theme, NilClass] returns the specified theme or Nil if the theme is not defined.
+    def theme(name = nil)
+      theme_factory.theme(name.presence || self.class._theme)
     end
 
     private
